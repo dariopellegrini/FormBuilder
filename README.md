@@ -6,8 +6,7 @@ An Android library to build form and form validations easily.
 <img src="https://raw.githubusercontent.com/dariopellegrini/FormBuilder/master/screen3.png" width="348">
 
 ## Example
-
-To run the example project, clone the repo or download it and open FormBuilderDemo with Android Studio.
+COMING SOON
 
 ## Requirements
 Android 4.3+
@@ -54,6 +53,7 @@ FormBuilder formBuilder;
             .setType(FormElement.Type.TEXT) // Type of form
             .setEnabled(true) // Enable or not the EditText (default true)
             .setRequired(true) // For validation purpose (default false)
+            );
         formObjects.add(new FormElement().setTag("email").setHint("email").setType(FormElement.Type.EMAIL));
         formObjects.add(new FormElement().setTag("phone").setHint("phone").setType(FormElement.Type.PHONE));
         
