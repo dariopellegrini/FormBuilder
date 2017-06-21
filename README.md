@@ -13,11 +13,11 @@ To run the example project, clone the repo or download it and open FormBuilderDe
 Android 4.3+
 
 ## Installation
-Add this to your build.gradle file
+Add edit your build.gradle file
 ``` groovy
 allprojects {
     repositories {
-        jcenter()
+        ...
         maven { url 'https://jitpack.io' }
     }
 }
