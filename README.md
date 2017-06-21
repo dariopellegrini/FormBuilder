@@ -14,21 +14,21 @@ Android 4.3+
 
 ## Installation
 Add this to your build.gradle file
-`
+``` groovy
 allprojects {
     repositories {
         jcenter()
         maven { url 'https://jitpack.io' }
     }
 }
-`
+```
 Then add as dependency to yout app/build.gradle
-`
+``` groovy
 dependencies {
     ...
     compile 'com.github.dariopellegrini:FormBuilder:v0.9'
 }
-`
+```
 
 ## Usage
 This library let's you to create forms and add them in a LinearLayout.
