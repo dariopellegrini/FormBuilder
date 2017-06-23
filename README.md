@@ -87,7 +87,7 @@ formObjects.add(new FormHeader().setTitle("Hello"));
 // Simple text
 formObjects.add(new FormElement().setTag("text").setHint("text").setType(FormElement.Type.TEXT));
 
-// Simple text withou placeholder animation (for long text for example)
+// Simple text without placeholder animation (for long text for example)
 formObjects.add(new FormElement().setTag("view").setHint("view").setType(FormElement.Type.TEXTVIEW));
 
 // E-mail
