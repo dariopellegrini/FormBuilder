@@ -30,7 +30,7 @@ dependencies {
 ```
 
 ## Usage
-This library let's you to create forms and add them in a LinearLayout.
+This library let you to create forms and add them in a LinearLayout.
 If you want to scroll this linear layout remember to add it inside a ScrollView.
 Here is an example:
 
