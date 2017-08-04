@@ -97,6 +97,7 @@ public class FormBuilder {
                 editText.setHint(formElement.getHint());
                 editText.setText(formElement.getValue());
                 editText.setInputType(InputType.TYPE_CLASS_TEXT);
+                editText.setText(formElement.getValue());
                 viewMap.put(formElement.getTagOrToString(), editText);
                 addViewToView(textInputLayout, editText);
                 return textInputLayout;
@@ -106,6 +107,7 @@ public class FormBuilder {
                 editText.setText(formElement.getValue());
                 editText.setGravity(Gravity.LEFT | Gravity.TOP);
                 editText.setInputType(InputType.TYPE_CLASS_TEXT);
+                editText.setText(formElement.getValue());
                 viewMap.put(formElement.getTagOrToString(), editText);
                 return editText;
             case EMAIL:
@@ -114,6 +116,7 @@ public class FormBuilder {
                 editText.setHint(formElement.getHint());
                 editText.setText(formElement.getValue());
                 editText.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+                editText.setText(formElement.getValue());
                 viewMap.put(formElement.getTagOrToString(), editText);
                 addViewToView(textInputLayout, editText);
                 return textInputLayout;
@@ -123,6 +126,7 @@ public class FormBuilder {
                 editText.setHint(formElement.getHint());
                 editText.setText(formElement.getValue());
                 editText.setInputType(InputType.TYPE_CLASS_PHONE);
+                editText.setText(formElement.getValue());
                 viewMap.put(formElement.getTagOrToString(), editText);
                 addViewToView(textInputLayout, editText);
                 return textInputLayout;
@@ -133,6 +137,7 @@ public class FormBuilder {
                 editText.setText(formElement.getValue());
                 editText.setInputType(InputType.TYPE_CLASS_TEXT);
                 editText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                editText.setText(formElement.getValue());
                 viewMap.put(formElement.getTagOrToString(), editText);
                 addViewToView(textInputLayout, editText);
                 return textInputLayout;
@@ -142,6 +147,7 @@ public class FormBuilder {
                 editText.setHint(formElement.getHint());
                 editText.setText(formElement.getValue());
                 editText.setInputType(InputType.TYPE_CLASS_NUMBER);
+                editText.setText(formElement.getValue());
                 viewMap.put(formElement.getTagOrToString(), editText);
                 addViewToView(textInputLayout, editText);
                 return textInputLayout;
@@ -151,6 +157,7 @@ public class FormBuilder {
                 editText.setHint(formElement.getHint());
                 editText.setText(formElement.getValue());
                 editText.setInputType(InputType.TYPE_TEXT_VARIATION_WEB_EMAIL_ADDRESS);
+                editText.setText(formElement.getValue());
                 viewMap.put(formElement.getTagOrToString(), editText);
                 addViewToView(textInputLayout, editText);
                 return textInputLayout;
@@ -160,6 +167,7 @@ public class FormBuilder {
                 editText.setHint(formElement.getHint());
                 editText.setText(formElement.getValue());
                 editText.setInputType(InputType.TYPE_TEXT_VARIATION_POSTAL_ADDRESS);
+                editText.setText(formElement.getValue());
                 viewMap.put(formElement.getTagOrToString(), editText);
                 addViewToView(textInputLayout, editText);
                 return textInputLayout;
@@ -179,6 +187,7 @@ public class FormBuilder {
                         pickDate(dateEditText);
                     }
                 });
+                dateEditText.setText(formElement.getValue());
                 viewMap.put(formElement.getTagOrToString(), editText);
                 addViewToView(textInputLayout, dateEditText);
                 return textInputLayout;
@@ -198,6 +207,7 @@ public class FormBuilder {
                         pickTime(timeEditText);
                     }
                 });
+                timeEditText.setText(formElement.getValue());
                 viewMap.put(formElement.getTagOrToString(), editText);
                 addViewToView(textInputLayout, timeEditText);
                 return textInputLayout;
@@ -216,6 +226,7 @@ public class FormBuilder {
                         pickMultipleDialog(multipleSelectionEditText, formElement);
                     }
                 });
+                multipleSelectionEditText.setText(formElement.getValue());
                 viewMap.put(formElement.getTagOrToString(), editText);
                 addViewToView(textInputLayout, multipleSelectionEditText);
                 return textInputLayout;
@@ -234,6 +245,7 @@ public class FormBuilder {
                         pickDialog(selectionEditText, formElement);
                     }
                 });
+                selectionEditText.setText(formElement.getValue());
                 viewMap.put(formElement.getTagOrToString(), editText);
                 addViewToView(textInputLayout, selectionEditText);
                 return textInputLayout;
