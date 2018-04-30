@@ -25,7 +25,7 @@ Then add as dependency to yout app/build.gradle
 ``` groovy
 dependencies {
     ...
-    compile 'com.github.dariopellegrini:FormBuilder:v0.9'
+    compile 'com.github.dariopellegrini:FormBuilder:v0.9.2'
 }
 ```
 
