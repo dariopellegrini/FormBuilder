@@ -423,17 +423,26 @@ public class FormBuilder {
             FormElement element = pair.getValue();
             View view = viewMap.get(element.getTagOrToString());
             if (element.getRequired()) {
-                if (element.getValue() == null || element.getValue().length() == 0) {
-                    isValid = false;
-                    if (view instanceof EditText) {
-                        ((EditText) view).setError(element.getErrorMessageOrDefault());
+                if (element.getType() == FormElement.Type.MULTIPLE_SELECTION || element.getType() == FormElement.Type.SELECTION) {
+                    if (element.getOptionsSelected() == null || element.getOptionsSelected().isEmpty()) {
+                        isValid = false;
+                        if (view instanceof EditText) {
+                            ((EditText) view).setError(element.getErrorMessageOrDefault());
+                        }
+                    }
+                } else {
+                    if (element.getValue() == null || element.getValue().length() == 0) {
+                        isValid = false;
+                        if (view instanceof EditText) {
+                            ((EditText) view).setError(element.getErrorMessageOrDefault());
+                        }
                     }
                 }
             }
 
             if (element.getFormValidation() != null) {
                 boolean validation = element.getFormValidation().validate();
-                if (validation == false) {
+                if (!validation) {
                     isValid = validation;
                     if (view instanceof EditText) {
                         ((EditText) view).setError(element.getErrorMessageOrDefault());

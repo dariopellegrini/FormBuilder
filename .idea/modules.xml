@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/FormBuilder.iml" filepath="$PROJECT_DIR$/FormBuilder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/formbuilder/formbuilder.iml" filepath="$PROJECT_DIR$/formbuilder/formbuilder.iml" />
+    </modules>
+  </component>
+</project>
