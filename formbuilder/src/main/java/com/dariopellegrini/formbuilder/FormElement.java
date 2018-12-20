@@ -32,6 +32,7 @@ public class FormElement extends FormObject {
     private LinearLayout.LayoutParams params;
     private FormValidation formValidation;
     private String errorMessage;
+    private boolean isSingleLine;
 
     public FormElement() {
         isEnabled = true;
@@ -41,6 +42,7 @@ public class FormElement extends FormObject {
         dateTimeFormat = "ddMMyyyy HH:mm:ss";
         options = new ArrayList<String>();
         optionsSelected = new ArrayList<String>();
+        isSingleLine = true;
     }
 
     public String getTag() {
@@ -204,5 +206,15 @@ public class FormElement extends FormObject {
 
     public String getErrorMessageOrDefault() {
         return errorMessage ==  null ? "Error" : errorMessage;
+    }
+
+
+    public boolean getSingleLine() {
+        return isSingleLine;
+    }
+
+    public FormElement setSingleLine(boolean singleLine) {
+        isSingleLine = singleLine;
+        return this;
     }
 }
