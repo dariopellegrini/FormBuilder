@@ -13,6 +13,7 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -43,6 +44,7 @@ public class FormBuilder {
 
     private Calendar calendar;
 
+
     public FormBuilder(Context context, LinearLayout linearLayout) {
         this.context = context;
         this.linearLayout = linearLayout;
@@ -72,6 +74,15 @@ public class FormBuilder {
         return headerTextView;
     }
 
+
+    private ArrayList<FormElementChangeListener> formElementChangeListeners = new ArrayList<>();
+    public void addFormElementChangeListener(FormElementChangeListener listener){
+        formElementChangeListeners.add(listener);
+    }
+    public interface FormElementChangeListener{
+        //To use, implement onFormElementChangeListener and call FormBuilder.addFormElementChangeListener(activity) from OnCreate()
+        public FormElement onFormElementChangeListener(FormElement element);
+    }
     private View buildElement(final FormElement formElement) {
         FormElement.Type type = formElement.getType();
         TextInputLayout textInputLayout = null;
@@ -84,6 +95,9 @@ public class FormBuilder {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 formElement.setValue(charSequence.toString());
+                //Notify listeners.
+                for (FormElementChangeListener listener : formElementChangeListeners)
+                    listener.onFormElementChangeListener(formElement);
             }
 
             @Override
@@ -98,6 +112,10 @@ public class FormBuilder {
                 editText.setText(formElement.getValue());
                 editText.setInputType(InputType.TYPE_CLASS_TEXT);
                 editText.setText(formElement.getValue());
+                if (!formElement.getSingleLine()){
+                    editText.setSingleLine(false);
+                    editText.setImeOptions(EditorInfo.IME_FLAG_NO_ENTER_ACTION);
+                }
                 viewMap.put(formElement.getTagOrToString(), editText);
                 addViewToView(textInputLayout, editText);
                 return textInputLayout;
@@ -218,7 +236,7 @@ public class FormBuilder {
                 multipleSelectionEditText.setClickable(true);
                 multipleSelectionEditText.setEnabled(formElement.getEnabled());
                 multipleSelectionEditText.setHint(formElement.getHint());
-                multipleSelectionEditText.setText(formElement.getValue());
+                multipleSelectionEditText.setText(formElement.getOptionsSelected().toString().replace("[", "").replace("]", ""));
                 multipleSelectionEditText.setInputType(InputType.TYPE_CLASS_TEXT);
                 multipleSelectionEditText.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -226,7 +244,6 @@ public class FormBuilder {
                         pickMultipleDialog(multipleSelectionEditText, formElement);
                     }
                 });
-                multipleSelectionEditText.setText(formElement.getValue());
                 viewMap.put(formElement.getTagOrToString(), editText);
                 addViewToView(textInputLayout, multipleSelectionEditText);
                 return textInputLayout;
@@ -237,15 +254,14 @@ public class FormBuilder {
                 selectionEditText.setClickable(true);
                 selectionEditText.setEnabled(formElement.getEnabled());
                 selectionEditText.setHint(formElement.getHint());
-                selectionEditText.setText(formElement.getValue());
                 selectionEditText.setInputType(InputType.TYPE_CLASS_TEXT);
+                selectionEditText.setText(formElement.getOptionsSelected().toString().replace("[", "").replace("]", ""));
                 selectionEditText.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         pickDialog(selectionEditText, formElement);
                     }
                 });
-                selectionEditText.setText(formElement.getValue());
                 viewMap.put(formElement.getTagOrToString(), editText);
                 addViewToView(textInputLayout, selectionEditText);
                 return textInputLayout;
@@ -375,7 +391,7 @@ public class FormBuilder {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 selectedFormElement.setOptionsSelected(selectedElements);
-                selectedEditText.setText(selectedFormElement.getOptionsSelected().toString());
+                selectedEditText.setText(selectedFormElement.getOptionsSelected().toString().replace("[", "").replace("]", ""));
             }
         });
 
@@ -400,9 +416,10 @@ public class FormBuilder {
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
                 int selectedPosition = ((AlertDialog)dialogInterface).getListView().getCheckedItemPosition();
+                selectedElements.clear(); //We only want one input
                 selectedElements.add(selectedFormElement.getOptions().get(selectedPosition));
                 selectedFormElement.setOptionsSelected(selectedElements);
-                selectedEditText.setText(selectedFormElement.getOptionsSelected().toString());
+                selectedEditText.setText(selectedFormElement.getOptionsSelected().toString().replace("[", "").replace("]", ""));
             }
         });
 
