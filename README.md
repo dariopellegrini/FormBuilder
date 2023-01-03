@@ -1,4 +1,6 @@
 # FormBuilder
+**This repository is no longer maintained.**
+
 An Android library to build form and form validations easily.
 
 <img src="https://raw.githubusercontent.com/dariopellegrini/FormBuilder/master/screen1.png" width="348">
